@@ -39,6 +39,15 @@ TLS and OpenDKIM support are optional.
 			-v /path/to/certs:/etc/postfix/certs \
 			--name postfix -d catatnight/postfix
 	```
+4. Enable Relay Host
+
+	```bash
+	$ sudo docker run -p 587:587 \
+			-e maildomain=mail.example.com -e smtp_user=user:pwd \
+			-e relayhost=relayServer.example.com \
+			-v /path/to/certs:/etc/postfix/certs \
+			--name postfix -d catatnight/postfix
+	```
 
 ## Note
 + Login credential should be set to (`username@mail.example.com`, `password`) in Smtp Client

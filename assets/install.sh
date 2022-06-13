@@ -27,6 +27,7 @@ tail -f /var/log/mail.log
 EOF
 chmod +x /opt/postfix.sh
 postconf -e myhostname=$maildomain
+postconf -e relayhost=$relayhost
 postconf -F '*/*/chroot = n'
 
 ############
