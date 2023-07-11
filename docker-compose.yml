@@ -1,0 +1,20 @@
+version: "3.8"                                    
+                                            
+services:                                                                                                              
+  scan2relay:                                                                                                             
+    container_name: scan2relay
+    image: digitaladrenaline/postfix
+    restart: unless-stopped
+    environment: 
+      - maildomain=digital-adrenaline.com
+      - relayhost=<RELAYHOST>
+      - message_size_limit=157286400
+      - smtp_user=
+        YOURCOMPANYNAMEHERE:SuperPassword,
+        YOURCOMPANYNAMEHERE2:SuperPassword,
+    volumes:
+      #- ./certs:/etc/postfix/certs  
+      - "/etc/letsencrypt/live/digital-adrenaline.com/fullchain.pem:/etc/postfix/certs/digital-adrenaline.com.crt:ro"
+      - "/etc/letsencrypt/live/digital-adrenaline.com/privkey.pem:/etc/postfix/certs/digital-adrenaline.com.key:ro"
+    ports:
+      - 587:587
